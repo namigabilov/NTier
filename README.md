@@ -25,24 +25,35 @@ NTier is a .NET Core-based, multi-layered architecture project that integrates p
 ### 2. Open the Project in Your IDE
 Navigate to the project directory and open it in your preferred IDE (Visual Studio, Rider, VS Code, etc.).
 
-### 3. Navigate to WebApi Directory
+### 3. Update Your ConnectionStrings
+Postgresql is enabled in the project. You need to configure the `appsettings.json` file with your "Default" key:
+```json
+"ConnectionStrings": {
+    "Default": "Host=;Port=5432;Username=;Password=;Database=;"
+}
+```
+
+### 4. Navigate to WebApi Directory
 ```sh
  cd WebApi
 ```
 
-### 4. Restore Dependencies
+### 5. Restore Dependencies
 ```sh
  dotnet restore
 ```
 
-### 5. Run Database Migrations
+### 6. Run Database Migrations
 If the project uses Entity Framework Core, apply pending migrations:
 ```sh
+ cd ../DataAccess/
+ dotnet ef migrations add Initialcreate
  dotnet ef database update
 ```
 
-### 6. Run the Application
+### 7. Run the Application
 ```sh
+ cd ../WebApi/
  dotnet run
 ```
 
@@ -89,7 +100,6 @@ Localization is managed using a custom middleware and integrated into the reques
 - **JWT Authentication** - Secure API authentication.
 - **AutoMapper** - Automatic object mapping.
 - **Newtonsoft.Json** - JSON serialization and deserialization.
-- **Serilog** - Advanced logging support.
 - **Swagger** - API documentation and testing tool.
 - **CORS** - Secure cross-origin resource sharing.
 
